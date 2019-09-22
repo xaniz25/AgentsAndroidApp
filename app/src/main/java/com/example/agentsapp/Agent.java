@@ -1,3 +1,8 @@
+/*Created by Shanice Talan on Sept 19, 2019
+CMPP 264 Java: Day 12 Assignment - Android App
+Connects to Travel Experts DB to do Select, Insert, Update & Delete
+on Agents table */
+
 package com.example.agentsapp;
 
 import java.io.Serializable;
@@ -13,6 +18,7 @@ public class Agent implements Serializable {
     private String Position;
     private Integer AgcyId;
 
+    //constructor
     public Agent(Integer agentId, String firstName, String midInitial, String lastName,
                  String phone, String email, String position, Integer agcyId) {
         AgentId = agentId;
@@ -25,6 +31,7 @@ public class Agent implements Serializable {
         AgcyId = agcyId;
     }
 
+    //constructor that accepts an array
     public Agent(String[] data){
         AgentId = Integer.parseInt(data[0]);
         FirstName = data[1];
@@ -35,6 +42,8 @@ public class Agent implements Serializable {
         Position = data[6];
         AgcyId = Integer.parseInt(data[7]);
     }
+
+    //getters and setters
 
     public Integer getAgentId() {
         return AgentId;
@@ -101,6 +110,7 @@ public class Agent implements Serializable {
     }
 
 
+    //showing only id and name to show agents in ListView
     @Override
     public String toString(){
         return AgentId + " " + LastName + ", " + FirstName;

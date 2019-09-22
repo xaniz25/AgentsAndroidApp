@@ -35,6 +35,7 @@ public class AgentDetailActivity extends AppCompatActivity {
 
         data = new AgentDB(getApplicationContext());
 
+        //get data for the agent and show in EditText
         Agent agent = (Agent)getIntent().getSerializableExtra("agent");
         etAgtId.setText(agent.getAgentId().toString()+"");
         etFirstName.setText(agent.getFirstName());
@@ -45,6 +46,7 @@ public class AgentDetailActivity extends AppCompatActivity {
         etPosition.setText(agent.getPosition());
         etAgcyId.setText(agent.getAgcyId().toString()+"");
 
+        //updates the current agent
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,12 +87,15 @@ public class AgentDetailActivity extends AppCompatActivity {
                     return;
                 }
 
+                //gets new content from EditText and update agent
                 long result = data.updateAgent(
                         new Agent(Integer.parseInt(etAgtId.getText().toString()),
                                 etFirstName.getText().toString(), etMidInitial.getText().toString(),
                                 etLastName.getText().toString(), etPhone.getText().toString(),
                                 etEmail.getText().toString(), etPosition.getText().toString(),
                                 Integer.parseInt(etAgcyId.getText().toString())));
+
+                //checks if successful and shows message to user
                 if (result == 0)
                 {
                     Log.e("agt", "Update failed");
@@ -103,10 +108,14 @@ public class AgentDetailActivity extends AppCompatActivity {
             }
         });
 
+        //deletes the current agent
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //just needs agentid
                 long result = data.deleteAgent(Integer.parseInt(etAgtId.getText().toString()));
+
+                //checks if successful and shows message to user
                 if (result == 0)
                 {
                     Log.e("agt", "Delete failed");

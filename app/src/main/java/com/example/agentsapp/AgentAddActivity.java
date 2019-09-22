@@ -1,3 +1,7 @@
+/*Created by Shanice Talan on Sept 19, 2019
+CMPP 264 Java: Day 12 Assignment - Android App
+Connects to Travel Experts DB to do Select, Insert, Update & Delete
+on Agents table */
 package com.example.agentsapp;
 
 import android.os.Bundle;
@@ -32,6 +36,7 @@ public class AgentAddActivity extends AppCompatActivity {
 
         data = new AgentDB(getApplicationContext());
 
+        //adds/inserts new agent to db
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,12 +77,16 @@ public class AgentAddActivity extends AppCompatActivity {
                     return;
                 }
 
+
+                //gets data from EditText and create new agent
                 long result = data.insertAgent(
                         new Agent(0,
                                 etFirstName.getText().toString(), etMidInitial.getText().toString(),
                                 etLastName.getText().toString(), etPhone.getText().toString(),
                                 etEmail.getText().toString(), etPosition.getText().toString(),
                                 Integer.parseInt(etAgcyId.getText().toString())));
+
+                //checks if successful and shows message to user
                 if (result == 0)
                 {
                     Log.e("agt", "Save failed");
